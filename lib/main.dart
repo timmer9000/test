@@ -2,14 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
-  // try {
-  //  await Firebase.initializeApp(
-  //      options: DefaultFirebaseOptions.currentPlatform);
-  // } catch (e) {
-  //  TPDError = 'Error initializing Firebase: $e';
-//  }
+  try {
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+  } catch (e) {
+    //  TPDError = 'Error initializing Firebase: $e';
+  }
+
+  try {
+    final UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: "1@1.com",
+      password: "usa123",
+    );
+    final User user = userCredential.user!;
+    // Handle successful login (e.g., navigate to a different screen)
+    debugPrint("logged in!");
+  } on FirebaseAuthException catch (e) {
+    // Handle errors (e.g., display error messages)
+  }
+
   runApp(const MyApp());
 }
 
