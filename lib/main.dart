@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -60,18 +60,18 @@ class _MyHomePageState extends State<MyHomePage> {
     _loadCounter();
   }
 
-   void _loadCounter() async {
+  void _loadCounter() async {
     prefs = await SharedPreferences.getInstance();
     setState(() {
       _counter = prefs.getInt('counter') ?? 0;
     });
   }
 
-   void _incrementCounter() async {
+  void _incrementCounter() async {
     setState(() {
       _counter++;
     });
-    
+
     // Save the updated counter value to SharedPreferences.
     prefs.setInt('counter', _counter);
   }
