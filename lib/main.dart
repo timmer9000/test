@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 double latestVersion = 0.001;
 String TPDError = 'No error';
@@ -28,16 +29,45 @@ void main() async {
   final firestore = FirebaseFirestore.instance;
   final variableDocRef = firestore.collection('meta').doc('settings');
 
+  final connectivityResult = await (Connectivity().checkConnectivity());
+
+  if (connectivityResult == ConnectivityResult.none) {
+    // I am not connected to any network.
+    try {
+      DocumentSnapshot documentSnapshot =
+          await variableDocRef.get(GetOptions(source: Source.cache));
+      if (documentSnapshot.exists) {
+        // Process document data
+        latestVersion = (documentSnapshot.data() as Map)['latestVersion'];
+      }
+    } catch (e) {
+      // Handle errors, potentially displaying offline messages
+      debugPrint("Error getting document: $e");
+      TPDError = "$e";
+    }
+  } else {
+    try {
+      DocumentSnapshot documentSnapshot = await variableDocRef.get();
+      if (documentSnapshot.exists) {
+        // Process document data
+        latestVersion = (documentSnapshot.data() as Map)['latestVersion'];
+      }
+    } catch (e) {
+      // Handle errors, potentially displaying offline messages
+      debugPrint("Error getting document: $e");
+      TPDError = "$e";
+    }
+  }
+
   //await variableDocRef
   //final DocumentSnapshot documentSnapshot = await variableDocRef.get();
   try {
     DocumentSnapshot documentSnapshot =
         await variableDocRef.get(GetOptions(source: Source.cache));
     if (documentSnapshot.exists) {
+      // Process document data
       latestVersion = (documentSnapshot.data() as Map)['latestVersion'];
     }
-
-    // Process document data
   } catch (e) {
     // Handle errors, potentially displaying offline messages
     debugPrint("Error getting document: $e");
@@ -80,7 +110,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
-      home: const MyHomePage(title: 'Flutter Example App 104'),
+      home: const MyHomePage(title: 'Flutter Example App 105'),
       debugShowCheckedModeBanner: false,
     );
   }
