@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
-      home: const MyHomePage(title: 'Flutter Example App 100'),
+      home: const MyHomePage(title: 'Flutter Example App 101'),
       debugShowCheckedModeBanner: false,
     );
   }
