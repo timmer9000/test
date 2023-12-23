@@ -6,6 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+double latestVersion = 0.001;
+
 void main() async {
   try {
     await Firebase.initializeApp(
@@ -20,6 +22,18 @@ void main() async {
         .enablePersistence(const PersistenceSettings(synchronizeTabs: true));
   } catch (e) {
     // Offline persistence is already enabled - this is useful for hot restarting when doing development
+  }
+
+  final firestore = FirebaseFirestore.instance;
+  final variableDocRef = firestore.collection('meta').doc('settings');
+
+  //await variableDocRef
+  final DocumentSnapshot documentSnapshot = await variableDocRef.get();
+
+  // Check to see if we have the latest version as set by a field in firebase
+
+  if (documentSnapshot.exists) {
+    latestVersion = (documentSnapshot.data() as Map)['latestVersion'];
   }
 
   /*try {
@@ -45,7 +59,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App!!',
+      title: 'Flutter App!! $latestVersion.toString()',
       theme: ThemeData(
         colorSchemeSeed: Colors.indigo,
         useMaterial3: true,
