@@ -16,7 +16,6 @@ void main() async {
     //  TPDError = 'Error initializing Firebase: $e';
   }
 
-/*
   try {
     // TPD The official way for flutter according to https://firebase.google.com/docs/firestore/manage-data/enable-offline
     await FirebaseFirestore.instance
@@ -25,7 +24,6 @@ void main() async {
     // Offline persistence is already enabled - this is useful for hot restarting when doing development
   }
 
-*/
 /*
   final firestore = FirebaseFirestore.instance;
   final variableDocRef = firestore.collection('meta').doc('settings');
@@ -75,7 +73,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
-      home: const MyHomePage(title: 'Flutter Example App 3'),
+      home: const MyHomePage(title: 'Flutter Example App 99'),
       debugShowCheckedModeBanner: false,
     );
   }
