@@ -24,17 +24,17 @@ void main() async {
     // Offline persistence is already enabled - this is useful for hot restarting when doing development
   }
 
-  // final firestore = FirebaseFirestore.instance;
-  // final variableDocRef = firestore.collection('meta').doc('settings');
+  final firestore = FirebaseFirestore.instance;
+  final variableDocRef = firestore.collection('meta').doc('settings');
 
   //await variableDocRef
-  //final DocumentSnapshot documentSnapshot = await variableDocRef.get();
+  final DocumentSnapshot documentSnapshot = await variableDocRef.get();
 
   // Check to see if we have the latest version as set by a field in firebase
 
-  //if (documentSnapshot.exists) {
-  // latestVersion = (documentSnapshot.data() as Map)['latestVersion'];
-  // }
+  if (documentSnapshot.exists) {
+    latestVersion = (documentSnapshot.data() as Map)['latestVersion'];
+  }
 
   /*try {
     final UserCredential userCredential =
