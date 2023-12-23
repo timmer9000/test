@@ -31,7 +31,8 @@ void main() async {
   //await variableDocRef
   //final DocumentSnapshot documentSnapshot = await variableDocRef.get();
   try {
-    DocumentSnapshot documentSnapshot = await variableDocRef.get();
+    DocumentSnapshot documentSnapshot =
+        await variableDocRef.get(GetOptions(source: Source.cache));
     if (documentSnapshot.exists) {
       latestVersion = (documentSnapshot.data() as Map)['latestVersion'];
     }
@@ -79,7 +80,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
-      home: const MyHomePage(title: 'Flutter Example App 103'),
+      home: const MyHomePage(title: 'Flutter Example App 104'),
       debugShowCheckedModeBanner: false,
     );
   }
