@@ -24,7 +24,6 @@ void main() async {
     // Offline persistence is already enabled - this is useful for hot restarting when doing development
   }
 
-/*
   final firestore = FirebaseFirestore.instance;
   final variableDocRef = firestore.collection('meta').doc('settings');
 
@@ -36,8 +35,6 @@ void main() async {
   if (documentSnapshot.exists) {
     latestVersion = (documentSnapshot.data() as Map)['latestVersion'];
   }
-
-*/
 
   /*try {
     final UserCredential userCredential =
@@ -73,7 +70,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
-      home: const MyHomePage(title: 'Flutter Example App 99'),
+      home: const MyHomePage(title: 'Flutter Example App 100'),
       debugShowCheckedModeBanner: false,
     );
   }
