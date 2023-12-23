@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -12,6 +12,7 @@ void main() async {
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
   } catch (e) {
+    debugPrint("Error initializing Firebase: $e");
     //  TPDError = 'Error initializing Firebase: $e';
   }
 
@@ -23,6 +24,7 @@ void main() async {
     // Offline persistence is already enabled - this is useful for hot restarting when doing development
   }
 
+/*
   final firestore = FirebaseFirestore.instance;
   final variableDocRef = firestore.collection('meta').doc('settings');
 
@@ -34,6 +36,8 @@ void main() async {
   if (documentSnapshot.exists) {
     latestVersion = (documentSnapshot.data() as Map)['latestVersion'];
   }
+
+*/
 
   /*try {
     final UserCredential userCredential =
