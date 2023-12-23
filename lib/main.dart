@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() async {
   try {
@@ -13,6 +15,14 @@ void main() async {
   }
 
   try {
+    // TPD The official way for flutter according to https://firebase.google.com/docs/firestore/manage-data/enable-offline
+    await FirebaseFirestore.instance
+        .enablePersistence(const PersistenceSettings(synchronizeTabs: true));
+  } catch (e) {
+    // Offline persistence is already enabled - this is useful for hot restarting when doing development
+  }
+
+  /*try {
     final UserCredential userCredential =
         await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: "1@1.com",
@@ -23,7 +33,7 @@ void main() async {
     debugPrint("logged in!");
   } on FirebaseAuthException catch (e) {
     // Handle errors (e.g., display error messages)
-  }
+  }*/
 
   runApp(const MyApp());
 }
