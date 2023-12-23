@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App!! $latestVersion)',
+      title: 'Flutter App!!)',
       theme: ThemeData(
         colorSchemeSeed: Colors.indigo,
         useMaterial3: true,
@@ -156,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Arrr You have pushed the button this many times:',
+              'Argh You have pushed the button this many times:',
             ),
             Text(
               '$_counter $latestVersion',
