@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 double latestVersion = 0.001;
+String TPDError = 'No error';
 
 void main() async {
   try {
@@ -29,6 +30,14 @@ void main() async {
 
   //await variableDocRef
   final DocumentSnapshot documentSnapshot = await variableDocRef.get();
+  try {
+    DocumentSnapshot document = await variableDocRef.get();
+    // Process document data
+  } catch (e) {
+    // Handle errors, potentially displaying offline messages
+    debugPrint("Error getting document: $e");
+    TPDError = "$e";
+  }
 
   // Check to see if we have the latest version as set by a field in firebase
 
@@ -70,7 +79,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
-      home: const MyHomePage(title: 'Flutter Example App 101'),
+      home: const MyHomePage(title: 'Flutter Example App 102'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -159,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'Argh You have pushed the button this many times:',
             ),
             Text(
-              '$_counter $latestVersion',
+              '$_counter $latestVersion $TPDError',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
