@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+//import 'package:firebase_core/firebase_core.dart';
+//import 'firebase_options.dart';
 
 double latestVersion = 0.001;
 
 void main() async {
-  try {
+  /*try {
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
   } catch (e) {
     debugPrint("Error initializing Firebase: $e");
     //  TPDError = 'Error initializing Firebase: $e';
   }
+*/
 
+/*
   try {
     // TPD The official way for flutter according to https://firebase.google.com/docs/firestore/manage-data/enable-offline
     await FirebaseFirestore.instance
@@ -24,6 +26,7 @@ void main() async {
     // Offline persistence is already enabled - this is useful for hot restarting when doing development
   }
 
+*/
 /*
   final firestore = FirebaseFirestore.instance;
   final variableDocRef = firestore.collection('meta').doc('settings');
@@ -73,7 +76,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
-      home: const MyHomePage(title: 'Flutter Example App'),
+      home: const MyHomePage(title: 'Flutter Example App 3'),
       debugShowCheckedModeBanner: false,
     );
   }
