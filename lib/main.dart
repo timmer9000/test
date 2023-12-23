@@ -29,9 +29,13 @@ void main() async {
   final variableDocRef = firestore.collection('meta').doc('settings');
 
   //await variableDocRef
-  final DocumentSnapshot documentSnapshot = await variableDocRef.get();
+  //final DocumentSnapshot documentSnapshot = await variableDocRef.get();
   try {
-    DocumentSnapshot document = await variableDocRef.get();
+    DocumentSnapshot documentSnapshot = await variableDocRef.get();
+    if (documentSnapshot.exists) {
+      latestVersion = (documentSnapshot.data() as Map)['latestVersion'];
+    }
+
     // Process document data
   } catch (e) {
     // Handle errors, potentially displaying offline messages
@@ -40,10 +44,6 @@ void main() async {
   }
 
   // Check to see if we have the latest version as set by a field in firebase
-
-  if (documentSnapshot.exists) {
-    latestVersion = (documentSnapshot.data() as Map)['latestVersion'];
-  }
 
   /*try {
     final UserCredential userCredential =
@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
-      home: const MyHomePage(title: 'Flutter Example App 102'),
+      home: const MyHomePage(title: 'Flutter Example App 103'),
       debugShowCheckedModeBanner: false,
     );
   }
